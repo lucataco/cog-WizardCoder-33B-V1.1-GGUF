@@ -1,0 +1,17 @@
+# Configuration for Cog ⚙️
+# Reference: https://github.com/replicate/cog/blob/main/docs/yaml.md
+
+build:
+  gpu: true
+  cuda: "11.7"
+  system_packages:
+    - "build-essential"
+    - "wget"
+    - "cmake"
+    - "g++" 
+  python_version: "3.11"
+
+  run:
+    - "CMAKE_ARGS='-DLLAMA_CUBLAS=on' FORCE_CMAKE=1 pip install llama-cpp-python --no-cache-dir"
+    - curl -o /usr/local/bin/pget -L "https://github.com/replicate/pget/releases/download/v0.3.1/pget" && chmod +x /usr/local/bin/pget
+predict: "predict.py:Predictor"
